@@ -1,0 +1,11 @@
+[
+{
+  "name":"Foo",
+"age":20
+},
+{
+"name":"Baz",
+"age":22
+}
+]
+//http://127.0.0.1:5501/lib/api/person1.json

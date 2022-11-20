@@ -1,0 +1,49 @@
+
+
+
+import 'package:flutter/material.dart';
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+final double screenWidth =  MediaQuery.of(navigatorKey.currentState!.context).size.width;//360
+final double screenHeight =  MediaQuery.of(navigatorKey.currentState!.context).size.height;// 736
+final double dimen10 = screenHeight / 73.6;
+final double dimen12 = screenHeight / 61.3;
+final double dimen14 = screenHeight / 52.5;
+final double dimen15 = screenHeight / 49.0;
+final double dimen16=screenHeight/46;
+final double dimen17=screenHeight/43.29;
+final double dimen18=screenHeight/40.8;
+final double dimen19=screenHeight/38.7;
+final double dimen20 = screenHeight / 36.8;
+final double dimen30=screenHeight/24.5;
+final double dimen32=screenHeight/24.5;
+final double dimen40=screenHeight/18.4;
+final double dimen42=screenHeight/17.5;
+final double dimen50 = screenHeight /14.7;
+final double dimen60 = screenHeight /12.2;
+final double dimen70= screenHeight /10.5;
+final double dimen80= screenHeight /9.2;
+final double dimen88= screenHeight /8.36;
+final double dimen90=screenHeight/8.17;
+final double dimen95=screenHeight/7.74;
+final double dimen98=screenHeight/7.51;
+final double dimen100=screenHeight/7.3;
+final double dimen110=screenHeight/6.6;
+final double dimen120=screenHeight/6.13;
+final double dimen140=screenHeight/5.25;
+final double dimen160=screenHeight/4.6;
+final double dimen170=screenHeight/4.3;
+final double dimen190=screenHeight/3.8;
+final double dimen200=screenHeight/3.6;
+final double dimen230=screenHeight/3.2;
+final double dimen250=screenHeight/2.9;
+final double dimen300=screenHeight/2.4;
+final double dimen332=screenHeight/2.2;
+final double dimen350=screenHeight/2.1;
+final double dimen390=screenHeight/1.8;
+final double dimen400=screenHeight/1.8;
+final double dimen450=screenHeight/1.63;
+final double dimen480=screenHeight/1.53;
+final double dimen490=screenHeight/1.50;
+final double dimen500=screenHeight/1.4;
+final double dimen600=screenHeight/1.2;
+final double dimen700=screenHeight/1.1;
