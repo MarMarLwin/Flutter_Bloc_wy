@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+
       home: const EstateListScreen(), //const CovidScreen()
       routes: RouteHelper.routes,
     );

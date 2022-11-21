@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_bloc_articles/models/estate_response.dart';
+import 'package:flutter_bloc_articles/models/api_list_response.dart';
+import '../models/api_response.dart';
 import '../models/covid.dart';
 import '../models/estate.dart';
 
@@ -32,19 +33,20 @@ class ApiProvider {
   Future<List<Estate>> fetchEstateList() async {
     try {
       Response response = await _dio.get('${_walyaungUrl}api/estates');
-      var responseData= EstateResponse.fromJson(response.data);
-      return responseData.data!;
-
-    } catch (error, stacktrace) {
+      var responseData = ApiListResponse.fromJson(response.data);
+      return List<Estate>.from(
+          responseData.data!.map<Estate>((e) => Estate.fromJson(e)));
+    } catch (error) {
       return [];
     }
   }
 
   Future<Estate> fetchEstate(int id) async {
     try {
-      Response response = await _dio.get('${_walyaungUrl}api/estates/id');
-      return Estate.fromJson(response.data);
-    } catch (error, stacktrace) {
+      Response response = await _dio.get('${_walyaungUrl}api/estates/$id');
+      var responseData = ApiResponse.fromJson(response.data);
+      return Estate.fromJson(responseData.data!);
+    } catch (error) {
       return Estate.withError("Data not found / Connection issue");
     }
   }
