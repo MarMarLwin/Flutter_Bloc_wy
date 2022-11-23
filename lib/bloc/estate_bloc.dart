@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_articles/states/estate_state.dart';
 
@@ -25,11 +26,20 @@ class EstateBloc extends Bloc<EstateEvent, EstateState> {
       try {
         emit(EstateLoading());
         final mEstate = await apiRepository.fetchEstate(event.id);
-        print('-----${mEstate.id}');
+        debugPrint('-----${mEstate.id}');
         emit(EstateShow(mEstate));
       } on NetworkError {
         emit(const EstateError(
             "Failed to fetch estate data.Is your device online?"));
+      }
+    });
+
+    on<SetFavourite>((event, emit) async {
+      try {
+        var estate = await apiRepository.setFavourite(event.id);
+        print('-----$estate');
+      } on Error {
+        emit(const EstateError("Failed to set favourite"));
       }
     });
   }

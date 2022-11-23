@@ -63,9 +63,6 @@ class _EstateListScreenState extends State<EstateListScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
-                              // _estateBloc.add(
-                              //     GetEstate(state.estateList[index].id ?? 1));
-                              // print('------------');
                               Navigator.pushNamed(context, estateDetail,
                                   arguments: state.estateList[index].id!);
                             },

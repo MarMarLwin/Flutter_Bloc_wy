@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_articles/events/estate_event.dart';
+import '../bloc/estate_bloc.dart';
 import '../models/estate.dart';
+import '../states/estate_state.dart';
 import '../utils/dimensions.dart';
+import 'app_icon.dart';
 import 'big_text.dart';
 import 'icon_text_row.dart';
 import 'rounded_bg_text.dart';
@@ -26,9 +31,9 @@ class PropertyWidget extends StatefulWidget {
 }
 
 class _PropertyWidgetState extends State<PropertyWidget> {
+  EstateBloc _estateBloc = new EstateBloc();
   @override
   void initState() {
-    // Get.lazyPut(() => FavouriteEstateController(repo: Get.find()));
     super.initState();
   }
 
@@ -83,45 +88,36 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                           color: Colors.blueAccent),
                     ],
                   )),
-              /*  Positioned(
-                  right: dimen10,
-                  bottom: dimen10,
-                  child: GetBuilder<FavouriteEstateController>(
-                      builder: (favController) {
-                        return InkWell(
-                          onTap: () {
-                            if (!isLogin()) {
-                              showActionDialog(
-                                  context, 'warning'.tr, 'request_login'.tr,
-                                      () async {
-                                    Get.lazyPut(
-                                            () => SignInController(repo: Get.find()));
-                                    Get.toNamed(RouteHelper.getLogin());
-                                  });
-                            } else {
-                              if (widget.isFavourite) {
-                                favController.removeFavCar(widget.estate.id ?? 0);
-                                setState(() {
-                                  widget.isFavourite = false;
-                                });
-                              } else {
-                                favController.addFavEstate(widget.estate.id ?? 0);
-                                setState(() {
-                                  widget.isFavourite = true;
-                                });
-                              }
-                            }
-                          },
-                          child: AppIcon(
-                            icon: Icons.favorite,
-                            size: dimen32,
-                            iconColor: (widget.isFavourite)
-                                ? secondaryColor
-                                : Colors.white,
-                            backgroundColor: primaryColor,
-                          ),
-                        );
-                      })),*/
+              BlocBuilder<EstateBloc, EstateState>(builder: (context, state) {
+                return Positioned(
+                    right: dimen10,
+                    bottom: dimen10,
+                    child: InkWell(
+                      onTap: () {
+                        if (widget.isFavourite) {
+                          _estateBloc.add(SetFavourite(widget.estate.id ?? 0,
+                              !widget.estate.favourite!));
+
+                          setState(() {
+                            widget.isFavourite = false;
+                          });
+                        } else {
+                          _estateBloc.add(SetFavourite(widget.estate.id ?? 0,
+                              !widget.estate.favourite!));
+                          setState(() {
+                            widget.isFavourite = true;
+                          });
+                        }
+                      },
+                      child: AppIcon(
+                        icon: Icons.favorite,
+                        size: dimen32,
+                        iconColor:
+                            (widget.isFavourite) ? Colors.orange : Colors.white,
+                        backgroundColor: Colors.blue,
+                      ),
+                    ));
+              }),
               Positioned(
                   left: dimen10,
                   bottom: dimen10,

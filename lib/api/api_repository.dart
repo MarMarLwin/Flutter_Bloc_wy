@@ -3,7 +3,6 @@ import 'package:flutter_bloc_articles/models/covid.dart';
 
 import '../models/estate.dart';
 
-
 class ApiRepository {
   final _provider = ApiProvider();
 /*
@@ -17,12 +16,16 @@ class ApiRepository {
     return _provider.fetchCovidList();
   }
 
-  Future<List<Estate>> fetchEstateList(){
+  Future<List<Estate>> fetchEstateList() {
     return _provider.fetchEstateList();
   }
 
-  Future<Estate> fetchEstate(int id){
+  Future<Estate> fetchEstate(int id) {
     return _provider.fetchEstate(id);
+  }
+
+  Future<Estate> setFavourite(int id) {
+    return _provider.setFavouriteEstate(id);
   }
 }
 
