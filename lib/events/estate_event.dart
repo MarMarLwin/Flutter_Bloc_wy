@@ -7,11 +7,18 @@ abstract class EstateEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetEstateList extends EstateEvent {}
+class GetEstateList extends EstateEvent {
+  const GetEstateList();
+}
 
 class GetEstate extends EstateEvent {
   final int id;
   const GetEstate(this.id);
+}
+
+class LoadMore extends EstateEvent {
+  final int page;
+  const LoadMore(this.page);
 }
 
 class SetFavourite extends EstateEvent {}

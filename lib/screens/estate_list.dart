@@ -18,10 +18,18 @@ class EstateListScreen extends StatefulWidget {
 
 class _EstateListScreenState extends State<EstateListScreen> {
   final EstateBloc _estateBloc = EstateBloc();
+  final _controller = ScrollController();
 
   @override
   void initState() {
     _estateBloc.add(GetEstateList());
+    _controller.addListener(() {
+      if (_controller.position.atEdge) {
+        if (_controller.position.pixels != 0) {
+          _estateBloc.add(LoadMore(2));
+        }
+      }
+    });
     super.initState();
   }
 
@@ -56,6 +64,7 @@ class _EstateListScreenState extends State<EstateListScreen> {
                       return buildLoading();
                     } else if (state is EstateLoaded) {
                       return ListView.separated(
+                        controller: _controller,
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

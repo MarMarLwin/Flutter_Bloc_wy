@@ -30,9 +30,9 @@ class ApiProvider {
     }
   }
 
-  Future<List<Estate>> fetchEstateList() async {
+  Future<List<Estate>> fetchEstateList(int page) async {
     try {
-      Response response = await _dio.get('${_walyaungUrl}api/estates');
+      Response response = await _dio.get('${_walyaungUrl}api/estates?$page');
       var responseData = ApiListResponse.fromJson(response.data);
       return List<Estate>.from(
           responseData.data!.map<Estate>((e) => Estate.fromJson(e)));

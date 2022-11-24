@@ -25,12 +25,16 @@ class EstateBloc extends Bloc<EstateEvent, EstateState> {
       try {
         emit(EstateLoading());
         final mEstate = await apiRepository.fetchEstate(event.id);
-        print('-----${mEstate.id}');
+
         emit(EstateShow(mEstate));
       } on NetworkError {
         emit(const EstateError(
             "Failed to fetch estate data.Is your device online?"));
       }
     });
+
+    on<LoadMore>(((event, emit) async {
+      await apiRepository.fetchEstateList(page: event.page + 1);
+    }));
   }
 }
