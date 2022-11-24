@@ -53,7 +53,6 @@ class _EstateDetailScreenState extends State<EstateDetailScreen>
               } else if (state is EstateLoading) {
                 return buildLoading();
               } else if (state is EstateShow) {
-                print('-----${state.estate.id}');
                 return Column(children: [
                   Container(
                       height: dimen250,
