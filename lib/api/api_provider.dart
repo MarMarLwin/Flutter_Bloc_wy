@@ -32,9 +32,8 @@ class ApiProvider {
   Future<List<Estate>> fetchEstateList() async {
     try {
       Response response = await _dio.get('${_walyaungUrl}api/estates');
-      var responseData= EstateResponse.fromJson(response.data);
+      var responseData = EstateResponse.fromJson(response.data);
       return responseData.data!;
-
     } catch (error, stacktrace) {
       return [];
     }
@@ -42,7 +41,7 @@ class ApiProvider {
 
   Future<Estate> fetchEstate(int id) async {
     try {
-      Response response = await _dio.get('${_walyaungUrl}api/estates/id');
+      Response response = await _dio.get('${_walyaungUrl}api/estates/$id');
       return Estate.fromJson(response.data);
     } catch (error, stacktrace) {
       return Estate.withError("Data not found / Connection issue");

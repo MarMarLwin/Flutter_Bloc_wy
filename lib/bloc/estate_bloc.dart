@@ -25,6 +25,7 @@ class EstateBloc extends Bloc<EstateEvent, EstateState> {
       try {
         emit(EstateLoading());
         final mEstate = await apiRepository.fetchEstate(event.id);
+        print('-----${mEstate.id}');
         emit(EstateShow(mEstate));
       } on NetworkError {
         emit(const EstateError(
