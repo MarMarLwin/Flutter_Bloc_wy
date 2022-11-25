@@ -16,8 +16,8 @@ class ApiRepository {
     return _provider.fetchCovidList();
   }
 
-  Future<List<Estate>> fetchEstateList() {
-    return _provider.fetchEstateList();
+  Future<List<Estate>> fetchEstateList({int page = 1}) {
+    return _provider.fetchEstateList(page);
   }
 
   Future<Estate> fetchEstate(int id) {
