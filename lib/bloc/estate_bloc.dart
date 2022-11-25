@@ -37,7 +37,6 @@ class EstateBloc extends Bloc<EstateEvent, EstateState> {
     on<SetFavourite>((event, emit) async {
       try {
         var estate = await apiRepository.setFavourite(event.id);
-        print('-----$estate');
       } on Error {
         emit(const EstateError("Failed to set favourite"));
       }

@@ -21,4 +21,8 @@ class LoadMore extends EstateEvent {
   const LoadMore(this.page);
 }
 
-class SetFavourite extends EstateEvent {}
+class SetFavourite extends EstateEvent {
+  final int id;
+  final bool isFavourite;
+  const SetFavourite(this.id, this.isFavourite);
+}
