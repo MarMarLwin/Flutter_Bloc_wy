@@ -1,13 +1,13 @@
-/*
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../api/api_repository.dart';
 import '../models/article.dart';
 import 'bloc.dart';
 
-class ArticleListBloc implements Bloc {
+class ArticleListBloc {
   // 1
-  //final _client = RWClient();
+  final _client = ApiRepository();
   // 2
   final _searchQueryController = StreamController<String?>();
   // 3
@@ -17,11 +17,10 @@ class ArticleListBloc implements Bloc {
 
   ArticleListBloc() {
     // 5
-  */
-/*  articlesStream = _searchQueryController.stream
-        .asyncMap((query) => _client.fetchArticles(query));
- *//*
- }
+
+    articlesStream = _searchQueryController.stream
+        .asyncMap((query) => _client.fetchArticleList());
+  }
 
   // 6
   @override
@@ -29,4 +28,3 @@ class ArticleListBloc implements Bloc {
     _searchQueryController.close();
   }
 }
-*/

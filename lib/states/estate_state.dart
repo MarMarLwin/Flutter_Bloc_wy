@@ -19,6 +19,11 @@ class EstateLoaded extends EstateState {
   const EstateLoaded(this.estateList);
 }
 
+class EstateLoadMore extends EstateState {
+  final List<Estate> estateList;
+  const EstateLoadMore(this.estateList);
+}
+
 class EstateShow extends EstateState {
   final Estate estate;
   const EstateShow(this.estate);

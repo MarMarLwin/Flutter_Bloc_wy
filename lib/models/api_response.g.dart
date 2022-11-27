@@ -9,7 +9,7 @@ part of 'api_response.dart';
 ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) => ApiResponse()
   ..success = json['success'] as bool?
   ..message = json['message'] as String?
-  ..data = json['data'];
+  ..data = json['data'] as Map<String, dynamic>?;
 
 Map<String, dynamic> _$ApiResponseToJson(ApiResponse instance) =>
     <String, dynamic>{

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_articles/screens/article_list_screen.dart';
 import 'package:flutter_bloc_articles/screens/estate_list.dart';
 import 'package:flutter_bloc_articles/utils/dimensions.dart';
 import 'package:flutter_bloc_articles/utils/routes.dart';

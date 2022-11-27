@@ -8,7 +8,8 @@ abstract class EstateEvent extends Equatable {
 }
 
 class GetEstateList extends EstateEvent {
-  const GetEstateList();
+  final int page;
+  const GetEstateList(this.page);
 }
 
 class GetEstate extends EstateEvent {

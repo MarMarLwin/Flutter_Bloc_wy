@@ -2,12 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_articles/models/api_list_response.dart';
 import '../models/api_response.dart';
+import '../models/article.dart';
 import '../models/covid.dart';
 import '../models/estate.dart';
 
 class ApiProvider {
   final String _url =
-      'https://api.covid19api.com/summary'; //'https://api.raywenderlich.com/api/contents';
+      'https://api.raywenderlich.com/api/contents'; //'https://api.covid19api.com/summary';
   final String _walyaungUrl = 'https://walyaung-api.hivestage.com/';
 
   final Dio _dio = Dio(BaseOptions(
@@ -19,15 +20,16 @@ class ApiProvider {
         'Authorization': 'Bearer 116|wvyUNap2enyg1dplxVLvKGCF0VhxwPzbiSTuOGMa'
       }));
 
-  /*Future<Article> fetchArticleList() async {
+  Future<List<Article>> fetchArticleList() async {
     try {
       Response response = await _dio.get(_url);
-      return Article.fromJson(response.data);
+      // return Article.fromJson(response.data);
+      return List<Article>.from(response.data);
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
-      return Article();
+      return [];
     }
-  }*/
+  }
 
   Future<CovidModel> fetchCovidList() async {
     try {
@@ -41,7 +43,8 @@ class ApiProvider {
 
   Future<List<Estate>> fetchEstateList(int page) async {
     try {
-      Response response = await _dio.get('${_walyaungUrl}api/estates?$page');
+      Response response =
+          await _dio.get('${_walyaungUrl}api/estates?page=$page');
       var responseData = ApiListResponse.fromJson(response.data);
       return List<Estate>.from(
           responseData.data!.map<Estate>((e) => Estate.fromJson(e)));
